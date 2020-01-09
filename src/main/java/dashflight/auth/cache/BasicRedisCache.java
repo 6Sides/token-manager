@@ -1,6 +1,6 @@
 package dashflight.auth.cache;
 
-import config.parser.ConfigValue;
+import dashflight.auth.TokenManagerConfiguration;
 import redis.clients.jedis.Jedis;
 import redis.clients.jedis.JedisPool;
 
@@ -10,11 +10,16 @@ import redis.clients.jedis.JedisPool;
  */
 public class BasicRedisCache {
 
-    @ConfigValue("redis.host")
     private static String host;
 
-    @ConfigValue("redis.port")
     private static int port;
+
+    static {
+        TokenManagerConfiguration config = TokenManagerConfiguration.getInstance();
+
+        host = config.getREDIS_HOST();
+        port = config.getREDIS_PORT();
+    }
 
     /**
      * Redis connection pool

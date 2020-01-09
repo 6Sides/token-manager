@@ -8,26 +8,26 @@ import com.amazonaws.services.s3.AmazonS3;
 import com.amazonaws.services.s3.AmazonS3ClientBuilder;
 import com.amazonaws.services.s3.model.S3Object;
 import com.amazonaws.services.s3.model.S3ObjectInputStream;
-import config.parser.ConfigValue;
 import java.security.interfaces.RSAPrivateKey;
 import java.security.interfaces.RSAPublicKey;
 
 public class RemoteKeyManager implements KeyManager {
 
-    @ConfigValue("aws.access_key")
     private static String ACCESS_KEY;
-
-    @ConfigValue("aws.secret_key")
     private static String SECRET_KEY;
-
-    @ConfigValue("aws.s3.bucket")
     private static String BUCKET;
-
-    @ConfigValue("aws.s3.public_key")
     private static String PUBLIC_KEY_PATH;
-
-    @ConfigValue("aws.s3.private_key")
     private static String PRIVATE_KEY_PATH;
+
+    static {
+        TokenManagerConfiguration config = TokenManagerConfiguration.getInstance();
+
+        ACCESS_KEY = config.getACCESS_KEY();
+        SECRET_KEY = config.getSECRET_KEY();
+        BUCKET = config.getBUCKET();
+        PUBLIC_KEY_PATH = config.getPUBLIC_KEY();
+        PRIVATE_KEY_PATH = config.getPRIVATE_KEY();
+    }
 
     private AmazonS3 s3client;
 
