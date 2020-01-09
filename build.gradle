@@ -1,0 +1,45 @@
+plugins {
+    id 'java'
+}
+
+group 'dashflight'
+version '1.0'
+
+sourceCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+
+    maven {
+        url 'https://jitpack.io'
+    }
+}
+
+dependencies {
+    testCompile group: 'junit', name: 'junit', version: '4.12'
+
+    implementation platform('com.amazonaws:aws-java-sdk-bom:1.11.228')
+    implementation 'com.amazonaws:aws-java-sdk-s3'
+
+    // JWT - Library to create & verify JWTs
+    compile 'com.auth0:java-jwt:3.8.1'
+
+    // Bcrypt - Used for password hashing & verification
+    implementation 'at.favre.lib:bcrypt:0.8.0'
+
+    // Jackson
+    compile group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: '2.0.1'
+    compile 'com.fasterxml.jackson.dataformat:jackson-dataformat-yaml:2.9.8'
+
+    // Tink - Used for ciphering the JWTs
+    compile 'com.google.crypto.tink:tink-android:1.3.0-rc3'
+
+    // Json - Required by Tink to read/write encryption keys to files
+    compile 'org.json:json:20080701'
+
+    // Redis - Used to store refresh tokens
+    compile group: 'redis.clients', name: 'jedis', version: '2.8.0'
+
+    // Config Injector
+    implementation 'com.github.6Sides:config-file-injector:master-SNAPSHOT'
+}
