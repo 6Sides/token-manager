@@ -18,14 +18,14 @@ repositories {
 dependencies {
     testCompile group: 'junit', name: 'junit', version: '4.12'
 
-    implementation platform('com.amazonaws:aws-java-sdk-bom:1.11.228')
-    implementation 'com.amazonaws:aws-java-sdk-s3'
+    compile platform('com.amazonaws:aws-java-sdk-bom:1.11.228')
+    compile 'com.amazonaws:aws-java-sdk-s3'
 
     // JWT - Library to create & verify JWTs
     compile 'com.auth0:java-jwt:3.8.1'
 
     // Bcrypt - Used for password hashing & verification
-    implementation 'at.favre.lib:bcrypt:0.8.0'
+    compile 'at.favre.lib:bcrypt:0.8.0'
 
     // Jackson
     compile group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: '2.0.1'
